@@ -1,10 +1,11 @@
 'use client';
 import { AiOutlineMenu } from 'react-icons/ai';
-import React from 'react';
+import React, { FC } from 'react';
 import Image from 'next/image';
 import Modal from '@/shared/components/modal';
+import { User } from '@prisma/client';
 
-const UserMenu = () => {
+const UserMenu: FC<{ currentUser: User | null }> = ({ currentUser }) => {
   return (
     <div className="relative">
       <div className="flex flex-row items-center gap-2">
