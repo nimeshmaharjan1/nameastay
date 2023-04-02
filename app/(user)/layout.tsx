@@ -1,5 +1,6 @@
 import Header from '@/features/user/layout/header';
 import '@/styles/globals.scss';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { IBM_Plex_Sans } from 'next/font/google';
 import ClientOnly from '../client-only';

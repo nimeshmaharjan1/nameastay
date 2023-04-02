@@ -1,8 +1,8 @@
 'use client';
 import React from 'react';
-import { Toaster } from 'react-hot-toast';
+import { ToastContainer } from 'react-toastify';
 const ToastProvider = () => {
-  return <Toaster position="top-right"></Toaster>;
+  return <ToastContainer></ToastContainer>;
 };
 
 export default ToastProvider;
