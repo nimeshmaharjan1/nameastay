@@ -3,6 +3,7 @@ import Search from '@/shared/components/search';
 import React, { FC } from 'react';
 import UserMenu from './user-menu';
 import { User } from '@prisma/client';
+import CategoriesNav from './categories-nav';
 
 const Header: FC<{ currentUser: User | null }> = ({ currentUser }) => {
   return (
@@ -14,6 +15,7 @@ const Header: FC<{ currentUser: User | null }> = ({ currentUser }) => {
           <UserMenu {...{ currentUser }}></UserMenu>
         </div>
       </div>
+      <CategoriesNav></CategoriesNav>
     </header>
   );
 };

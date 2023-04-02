@@ -120,13 +120,7 @@ const SignInModal = forwardRef<SignInModalRef, { id: string; goToSignUp: () => v
               <button
                 disabled={isLoading}
                 type="button"
-                onClick={() =>
-                  signIn('google', {
-                    redirect: false,
-                  })
-                    .then((values) => console.log({ values }))
-                    .catch((error) => console.log({ error }))
-                }
+                onClick={() => signIn('google')}
                 className="btn btn-block btn-outline gap-2 mt-2 hover:text-red-400"
                 style={{ marginLeft: -1 }}>
                 <AiOutlineGoogle></AiOutlineGoogle>Continue with Google
@@ -134,13 +128,7 @@ const SignInModal = forwardRef<SignInModalRef, { id: string; goToSignUp: () => v
               <button
                 disabled={isLoading}
                 type="button"
-                onClick={() =>
-                  signIn('github', {
-                    redirect: false,
-                  })
-                    .then((values) => console.log({ values }))
-                    .catch((error) => console.log({ error }))
-                }
+                onClick={() => signIn('github')}
                 className="btn btn-block btn-outline gap-2 hover:text-purple-500"
                 style={{ marginLeft: -1 }}>
                 <FiGithub></FiGithub>Continue with Github
