@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { forwardRef, useImperativeHandle, useRef } from 'react';
 import { GrFormClose } from 'react-icons/gr';
 import { AiOutlineGoogle } from 'react-icons/ai';
 import { FiGithub } from 'react-icons/fi';
@@ -9,8 +9,8 @@ import { emailRegex } from '@/shared/lib/validation.lib';
 import { zodResolver } from '@hookform/resolvers/zod';
 import classNames from 'classnames';
 import { useMutation } from 'react-query';
-import { toast } from 'react-hot-toast';
 import { signUp } from '@/features/user/services/auth.service';
+import { toast } from 'react-toastify';
 
 const schema = z.object({
   name: z.string().min(1, { message: 'Name is required.' }),
@@ -18,11 +18,16 @@ const schema = z.object({
   email: z.string().min(1, { message: 'Email is required.' }).regex(new RegExp(emailRegex), 'Email pattern is not valid.'),
 });
 
-const Modal: React.FC<{ id: string }> = ({ id }) => {
+export interface SignUpModalRef {
+  closeSignUpModal: () => void;
+}
+
+const SignUpModal = forwardRef<SignUpModalRef, { id: string; goToSignIn: () => void }>(({ id, goToSignIn }, ref) => {
   const {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm({
     defaultValues: {
       email: '',
@@ -40,6 +45,17 @@ const Modal: React.FC<{ id: string }> = ({ id }) => {
     },
   });
   const onSubmit = handleSubmit((data) => mutate(data));
+  const closeSignUpRef = useRef<HTMLLabelElement | null>(null);
+
+  useImperativeHandle(ref, () => ({
+    closeSignUpModal: () => {
+      if (closeSignUpRef.current) {
+        closeSignUpRef.current.click();
+        reset();
+      }
+    },
+  }));
+
   return (
     <>
       <input type="checkbox" id={id} className="modal-toggle" />
@@ -47,7 +63,7 @@ const Modal: React.FC<{ id: string }> = ({ id }) => {
         <div className="modal-box">
           <div className="flex justify-between">
             <h3 className="font-bold text-xl lg:text-2xl items-center">Welcome to Nameastay</h3>
-            <label htmlFor={id} className="btn btn-ghost btn-sm btn-circle">
+            <label ref={closeSignUpRef} htmlFor={id} className="btn btn-ghost btn-sm btn-circle">
               <GrFormClose className="text-2xl"></GrFormClose>
             </label>
           </div>
@@ -116,7 +132,10 @@ const Modal: React.FC<{ id: string }> = ({ id }) => {
                 <FiGithub></FiGithub>Continue with Github
               </button>
               <p className="mt-2 text-sm opacity-50 text-center">
-                Already have an account? <span className="font-bold link link-hover hover:text-primary">Log In</span>
+                Already have an account?{' '}
+                <span className="font-bold link link-hover hover:text-primary" onClick={goToSignIn}>
+                  Log In
+                </span>
               </p>
             </div>
           </form>
@@ -124,6 +143,8 @@ const Modal: React.FC<{ id: string }> = ({ id }) => {
       </div>
     </>
   );
-};
+});
 
-export default Modal;
+SignUpModal.displayName = 'Sign Up Modal';
+
+export default SignUpModal;
