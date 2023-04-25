@@ -7,16 +7,18 @@ import CategoriesNav from './categories-nav';
 
 const Header: FC<{ currentUser: User | null }> = ({ currentUser }) => {
   return (
-    <header className="fixed w-full border-b  z-10 shadow-sm">
-      <div className="py-4 container">
-        <div className="flex flex-row items-center justify-between gap-3 md:gap-0">
-          <Logo></Logo>
-          <Search></Search>
-          <UserMenu {...{ currentUser }}></UserMenu>
+    <>
+      <header className="fixed w-full border-b  z-10 shadow-sm">
+        <div className="py-4 container">
+          <div className="flex flex-row items-center justify-between gap-3 md:gap-0">
+            <Logo></Logo>
+            <Search></Search>
+            <UserMenu {...{ currentUser }}></UserMenu>
+          </div>
         </div>
-      </div>
+      </header>
       <CategoriesNav></CategoriesNav>
-    </header>
+    </>
   );
 };
 

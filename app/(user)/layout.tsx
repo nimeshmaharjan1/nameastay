@@ -10,7 +10,7 @@ import getCurrentUser from '@/shared/actions/get-current-user';
 
 export const metadata = {
   title: 'Nameastay',
-  description: 'Nameastay hero',
+  description: 'Home page for Nameastay.',
   icons: {
     icon: '/favicon.ico',
   },
