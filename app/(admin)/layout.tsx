@@ -1,17 +1,24 @@
-import AdminHeader from '@/features/admin/layout/header';
-import AdminSidebar from '@/features/admin/layout/sidebar';
-import '@/styles/globals.scss';
+import AdminHeader from "@/features/admin/layout/header";
+import AdminSidebar from "@/features/admin/layout/sidebar";
+import "@/styles/globals.scss";
 
-import { IBM_Plex_Sans } from 'next/font/google';
+import { IBM_Plex_Sans } from "next/font/google";
 
 export const metadata = {
-  title: 'Nameastay - Admin',
-  description: 'Nameastay hero',
+  title: "Nameastay - Admin",
+  description: "Nameastay hero",
 };
 
-const manrope = IBM_Plex_Sans({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'] });
+const manrope = IBM_Plex_Sans({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <body className={manrope.className}>

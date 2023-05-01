@@ -1,11 +1,13 @@
-import React from 'react';
+"use client";
+import React, { useState } from "react";
 
-import Link from 'next/link';
-import { FiBox, FiUsers } from 'react-icons/fi';
-import { MdOutlineSpaceDashboard } from 'react-icons/md';
-import { AiOutlineRight, AiOutlineLeft } from 'react-icons/ai';
+import Link from "next/link";
+import { FiBox, FiUsers } from "react-icons/fi";
+import { MdOutlineSpaceDashboard } from "react-icons/md";
+import { AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
 
 const AdminSidebar = () => {
+  const [isCollapsed, setIsCollapsed] = useState(false);
   return (
     <aside className="fixed w-64 h-screen shadow sidebar-section">
       <section className="logo-section h-20 flex items-center justify-start px-6">
@@ -22,10 +24,6 @@ const AdminSidebar = () => {
           <FiUsers className="w-6 h-6" /> Users
         </Link>
       </nav>
-
-      <Link href="/products" className="absolute bottom-0 bg-base-200">
-        <AiOutlineLeft className="w-6 h-6" /> Collapse
-      </Link>
     </aside>
   );
 };
